@@ -95,6 +95,15 @@ sub mangle_return {
     });
 }
 
+=head2 guard METHOD_NAME CODE
+
+Provides a requirement that must be satisfied in order for C<METHOD_NAME> to be
+called. C<CODE> is called as a method, receiving the arguments passed to the
+method. If C<CODE> returns true, the method is called as normal, otherwise
+undef is returned without the original method being called at all.
+
+=cut
+
 sub guard {
     my $caller = shift;
     my ($method_name, $code) = @_;
