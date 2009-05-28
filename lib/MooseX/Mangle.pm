@@ -39,7 +39,7 @@ MooseX::Mangle - mangle the argument list or return values of your methods
 C<MooseX::Mangle> provides some simple sugar for common usages of C<around>.
 Oftentimes all that is needed is to adjust the argument list or returned values
 of a method, but using C<around> directly for this can be tedious. This module
-exports two subroutines which make this a bit easier.
+exports a few subroutines which make this a bit easier.
 
 =cut
 
