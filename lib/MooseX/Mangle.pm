@@ -95,8 +95,22 @@ sub mangle_return {
     });
 }
 
+sub guard {
+    my $caller = shift;
+    my ($method_name, $code) = @_;
+    my $meta = Class::MOP::class_of($caller);
+    $meta->add_around_method_modifier($method_name => sub {
+        my $orig = shift;
+        my $self = shift;
+        if ($self->$code(@_)) {
+            return $self->$orig(@_);
+        }
+        return;
+    });
+}
+
 Moose::Exporter->setup_import_methods(
-    with_caller => [qw(mangle_args mangle_return)],
+    with_caller => [qw(mangle_args mangle_return guard)],
 );
 
 =head1 BUGS
