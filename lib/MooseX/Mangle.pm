@@ -86,9 +86,14 @@ sub mangle_return {
             my @ret = $self->$orig(@_);
             return $self->$code(@ret);
         }
-        else {
+        elsif (defined(wantarray)) {
             my $ret = $self->$orig(@_);
             return $self->$code($ret);
+        }
+        else {
+            $self->$orig(@_);
+            $self->$code();
+            return;
         }
     });
 }
