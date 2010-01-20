@@ -57,9 +57,8 @@ actually pass to the method.
 =cut
 
 sub mangle_args {
-    my $caller = shift;
+    my $meta = shift;
     my ($method_name, $code) = @_;
-    my $meta = Class::MOP::class_of($caller);
     $meta->add_around_method_modifier($method_name => sub {
         my $orig = shift;
         my $self = shift;
@@ -78,9 +77,8 @@ return.
 =cut
 
 sub mangle_return {
-    my $caller = shift;
+    my $meta = shift;
     my ($method_name, $code) = @_;
-    my $meta = Class::MOP::class_of($caller);
     $meta->add_around_method_modifier($method_name => sub {
         my $orig = shift;
         my $self = shift;
@@ -105,9 +103,8 @@ undef is returned without the original method being called at all.
 =cut
 
 sub guard {
-    my $caller = shift;
+    my $meta = shift;
     my ($method_name, $code) = @_;
-    my $meta = Class::MOP::class_of($caller);
     $meta->add_around_method_modifier($method_name => sub {
         my $orig = shift;
         my $self = shift;
@@ -119,7 +116,7 @@ sub guard {
 }
 
 Moose::Exporter->setup_import_methods(
-    with_caller => [qw(mangle_args mangle_return guard)],
+    with_meta => [qw(mangle_args mangle_return guard)],
 );
 
 =head1 BUGS
