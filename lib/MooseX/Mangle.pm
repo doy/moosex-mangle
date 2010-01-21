@@ -128,6 +128,8 @@ Moose::Exporter->setup_import_methods(
 
 No known bugs.
 
+Suggestions for more modifiers are always welcome, though.
+
 Please report any bugs through RT: email
 C<bug-moosex-mangle at rt.cpan.org>, or browse to
 L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=MooseX-Mangle>.
